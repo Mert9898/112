@@ -2,9 +2,19 @@ package Data_Structures;
 
 public class Bag<T> implements IBag<T> {
 
+	
+    private T[] baga;
+    private int size;
+
+    @SuppressWarnings("unchecked")
+    public Bag() {
+        bag = (T[]) new Object[size];
+        size = 0;
+    }
+    
 	@Override
 	public boolean add(T newEntry) {
-		// TODO Auto-generated method stub
+		Bag<Object> a = new Bag<Object>(); 
 		return false;
 	}
 
