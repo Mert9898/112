@@ -10,7 +10,7 @@ import Entities.Word;
 
 public class FileIO {
     public static void readFile(Text<Word> text, Dictionary<Word> dictionary) {
-        try (BufferedReader reader = new BufferedReader(new FileReader("../text.txt"))) {
+        try (BufferedReader reader = new BufferedReader(new FileReader("C:/Users/yzmrt/Downloads/112/CENG112_HW1_G35/src/Io/text.txt"))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] words = line.split("\\s+");

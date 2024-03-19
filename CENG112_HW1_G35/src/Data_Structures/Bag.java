@@ -93,13 +93,16 @@ public class Bag<T> implements IBag<T> {
 		return result;
 	}
     @Override
-	public int getFrequencyOf(T anEntry) {
-		checkInit();
-		int counter=0;
-		for(counter=0;counter<bag.length;counter++) {}
-			if(anEntry.equals(bag[counter])) {counter++;}
-		return counter;
-	}
+    public int getFrequencyOf(T anEntry) {
+        checkInit();
+        int counter = 0;
+        for (int i = 0; i < size; i++) {
+            if (anEntry.equals(bag[i])) {
+                counter++;
+            }
+        }
+        return counter;
+    }
     @Override
 	public int getIndexOf(T anEntry) {
 		int where = -1;
