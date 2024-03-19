@@ -5,6 +5,7 @@ import Data_Structures.Dictionary;
 import Data_Structures.Text;
 import Data_Structures.MostFrequentWordsDictionary;
 import Data_Structures.RareWordsDictionary;
+import Io.FileIO;
 
 public class WordFrequencyCounter {
     public static void main(String[] args) {
@@ -13,7 +14,7 @@ public class WordFrequencyCounter {
         RareWordsDictionary<Word> rareWordsDictionary = new RareWordsDictionary<>();
         FrequentWordsDictionary<Word> frequentWordsDictionary = new FrequentWordsDictionary<>();
         MostFrequentWordsDictionary<Word> mostFrequentWordsDictionary = new MostFrequentWordsDictionary<>();
-
+        FileIO.readFile(text, dictionary);
         text.displayItems();
         System.out.println("Text Size: " + text.getCurrentSize());
 
