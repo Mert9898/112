@@ -74,7 +74,6 @@ public class Bag<T> implements IBag<T> {
 		return result;
 	}
 
-	@Override
 	public boolean remove(T anEntry) {
 		checkInit();
 		int index = getIndexOf(anEntry);
@@ -83,7 +82,6 @@ public class Bag<T> implements IBag<T> {
 		return (anEntry.equals(result));
 	}
 
-	@Override
 	public T remove() {
 		checkInit();
 		T result = null;
@@ -96,7 +94,6 @@ public class Bag<T> implements IBag<T> {
 		return result;
 	}
 
-	@Override
 	public int getFrequencyOf(T anEntry) {
 		checkInit();
 		int counter=0;
@@ -105,7 +102,6 @@ public class Bag<T> implements IBag<T> {
 		return counter;
 	}
 
-	@Override
 	public int getIndexOf(T anEntry) {
 		int where = -1;
 		boolean found = false;
@@ -121,13 +117,11 @@ public class Bag<T> implements IBag<T> {
 		return where;
 	}
 
-	@Override
 	public boolean contains(T anEntry) {
 		checkInit();
 		return getIndexOf(anEntry)>-1;
 	}
 
-	@Override
 	public void clear() {
 		while(!isEmpty()) {remove();}
 		

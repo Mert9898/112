@@ -17,12 +17,10 @@ public class Word {
         return length;
     }
 
-    @Override
     public String toString() {
         return content;
     }
 
-    @Override
     public boolean equals(Object obj) {
         if (obj == this) {
             return true;
@@ -35,4 +33,4 @@ public class Word {
     }
 }
     
-}
+
