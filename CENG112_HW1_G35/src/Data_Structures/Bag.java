@@ -17,13 +17,13 @@ public class Bag<T> implements IBag<T> {
     }
     
     private void checkInit() {
-    	if (initialized) {
+    	if (!initialized) {
     		throw new SecurityException("Bag is not initialized yet");
     		
     		
     	}
     }
-    
+    @Override
 	public boolean add(T newEntry) {
 		checkInit();
 		if(isFull()) {
@@ -37,14 +37,14 @@ public class Bag<T> implements IBag<T> {
 
 		return true;
 	}
-
+    @Override
 	public boolean isEmpty() {
 		if(bag.length > 0) {
 			return false;
 		}
 		return true;
 	}
-
+    @Override
 	public boolean isFull() {
 		if(bag.length >= DEFAULT_CAPACITY) {
 			return true;
@@ -53,14 +53,13 @@ public class Bag<T> implements IBag<T> {
 		
 	}
 
-
-	public void doubleCap()
+    public void doubleCap()
 	{
 		int new_cap = 2*DEFAULT_CAPACITY;
 		bag = Arrays.copyOf(bag, new_cap);
 		
 	}
-	
+    @Override
 	public T removeByIndex(int index) {
 		checkInit();
 		T result = null;
@@ -73,7 +72,7 @@ public class Bag<T> implements IBag<T> {
 		}
 		return result;
 	}
-
+    @Override
 	public boolean remove(T anEntry) {
 		checkInit();
 		int index = getIndexOf(anEntry);
@@ -81,7 +80,7 @@ public class Bag<T> implements IBag<T> {
 		
 		return (anEntry.equals(result));
 	}
-
+    @Override
 	public T remove() {
 		checkInit();
 		T result = null;
@@ -93,7 +92,7 @@ public class Bag<T> implements IBag<T> {
 		}
 		return result;
 	}
-
+    @Override
 	public int getFrequencyOf(T anEntry) {
 		checkInit();
 		int counter=0;
@@ -101,7 +100,7 @@ public class Bag<T> implements IBag<T> {
 			if(anEntry.equals(bag[counter])) {counter++;}
 		return counter;
 	}
-
+    @Override
 	public int getIndexOf(T anEntry) {
 		int where = -1;
 		boolean found = false;
@@ -116,12 +115,12 @@ public class Bag<T> implements IBag<T> {
 		
 		return where;
 	}
-
+    @Override
 	public boolean contains(T anEntry) {
 		checkInit();
 		return getIndexOf(anEntry)>-1;
 	}
-
+    @Override
 	public void clear() {
 		while(!isEmpty()) {remove();}
 		
