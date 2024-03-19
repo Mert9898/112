@@ -1,6 +1,5 @@
 package Main;
 import Entities.Word;
-import Io.FileIO;
 import Data_Structures.FrequentWordsDictionary;
 import Data_Structures.Dictionary;
 import Data_Structures.Text;
@@ -15,7 +14,6 @@ public class WordFrequencyCounter {
         FrequentWordsDictionary<Word> frequentWordsDictionary = new FrequentWordsDictionary<>();
         MostFrequentWordsDictionary<Word> mostFrequentWordsDictionary = new MostFrequentWordsDictionary<>();
 
-        FileIO.readFile(text, dictionary, "text.txt");
         text.displayItems();
         System.out.println("Text Size: " + text.getCurrentSize());
 
