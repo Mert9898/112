@@ -25,4 +25,9 @@ public class Text<T> extends Bag<T> {
     			}
     	   }
     	}
+    
+	public void displayWithCount() {
+	    System.out.println("Number of words: " + getCurrentSize());
+	    displayItems();
+	}
 }

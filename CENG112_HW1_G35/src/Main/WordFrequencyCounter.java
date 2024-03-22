@@ -16,9 +16,16 @@ public class WordFrequencyCounter {
         MostFrequentWordsDictionary<Word> mostFrequentWordsDictionary = new MostFrequentWordsDictionary<>();
         FileIO.readFile(text, dictionary);
         text.separate(dictionary, rareWordsDictionary, frequentWordsDictionary, mostFrequentWordsDictionary);
-        System.out.println("Text Size: " + text.getCurrentSize());
-        System.out.println("Size: " + rareWordsDictionary.getCurrentSize());
-        System.out.println("Size: " + frequentWordsDictionary.getCurrentSize());
-        System.out.println("Size: " + mostFrequentWordsDictionary.getCurrentSize());
+        System.out.println("Text:");
+        text.displayWithCount();
+        System.out.println("");
+        System.out.println("Rare Words Dictionary:");
+        rareWordsDictionary.displayWithCount();
+        System.out.println("");
+        System.out.println("Frequent Words Dictionary:");
+        frequentWordsDictionary.displayWithCount();
+        System.out.println("");
+        System.out.println("Most Frequent Words Dictionary:");
+        mostFrequentWordsDictionary.displayWithCount();
     }
 }
