@@ -5,48 +5,43 @@ public class Reservation {
     private String customerName;
     private String roomType;
 
-    // Constructor to initialize reservation properties
     public Reservation(int reservationID, String customerName, String roomType) {
-        this.reservationID = reservationID;
+        setReservationID(reservationID); // Ensure IDs are set through the setter to include validation
         this.customerName = customerName;
-        this.roomType = roomType;
+        setRoomType(roomType); // Ensure room types are validated
     }
 
-    // Getter for reservation ID
     public int getReservationID() {
         return reservationID;
     }
 
-    // Getter for customer name
     public String getCustomerName() {
         return customerName;
     }
 
-    // Getter for room type
     public String getRoomType() {
         return roomType;
     }
 
-    // Setter for reservation ID
     public void setReservationID(int reservationID) {
+        if (reservationID < 0) throw new IllegalArgumentException("Reservation ID must be non-negative.");
         this.reservationID = reservationID;
     }
 
-    // Setter for customer name
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
 
-    // Setter for room type
     public void setRoomType(String roomType) {
+        if (!roomType.equals("Single") && !roomType.equals("Double") && !roomType.equals("Suite") && !roomType.equals("Deluxe")) {
+            throw new IllegalArgumentException("Invalid room type specified.");
+        }
         this.roomType = roomType;
     }
 
-    // Method to display reservation information
     @Override
     public String toString() {
-        return "Reservation ID: " + reservationID +
-               ", Customer: " + customerName +
-               ", Room Type: " + roomType;
+        return String.format("Reservation ID: %d, Customer: %s, Room Type: %s",
+                             reservationID, customerName, roomType);
     }
 }
