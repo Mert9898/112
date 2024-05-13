@@ -8,6 +8,8 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.LinkedList;
 import java.util.Queue;
+import hotel.Hotel;
+
 
 public class FileIO {
     private static final String RESERVATION_FILE = "reservations.txt"; // Path to the reservations file
@@ -38,9 +40,5 @@ public class FileIO {
         return reservations;
     }
 
-    public static void main(String[] args) {
-        Queue<Reservation> reservations = readReservations();
-        // Further processing can be done here, e.g., matching reservations with available rooms
-    }
 }
 
