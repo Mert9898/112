@@ -7,6 +7,7 @@ import java.util.LinkedList;
 import java.util.Queue;
 
 
+
 public class ManageReservations {
     private Queue<Reservation> singleReservations = new LinkedList<>();
     private Queue<Reservation> doubleReservations = new LinkedList<>();
@@ -41,4 +42,7 @@ public class ManageReservations {
         }
     }
 }
+
+
+
 
