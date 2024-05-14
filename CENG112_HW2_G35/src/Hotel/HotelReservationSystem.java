@@ -50,21 +50,97 @@ public class HotelReservationSystem {
     }
 
     public void printStatus() {
-        System.out.println("Final Room Status:");
+        List<Room> unavailableRooms = new ArrayList<>();
+        List<Room> availableRooms = new ArrayList<>();
+
         for (Room room : bookedRooms) {
-            if (!room.isAvailable()) {
-                System.out.println("Room " + room.getRoomNumber() + " (" + room.getRoomType() + ") is booked.");
+            if (room.isAvailable()) {
+                availableRooms.add(room);
             } else {
-                System.out.println("Room " + room.getRoomNumber() + " (" + room.getRoomType() + ") is available.");
+                unavailableRooms.add(room);
             }
         }
+
+        System.out.println("*********************************************** Unavailable Rooms");
+        for (Room room : unavailableRooms) {
+            System.out.println("Room " + room.getRoomNumber() + " (" + room.getRoomType() + ")");
+        }
+
+        System.out.println("*********************************************** Available Rooms");
+        for (Room room : availableRooms) {
+            System.out.println("Room " + room.getRoomNumber() + " (" + room.getRoomType() + ")");
+        }
+    }
+
+    public void printPiles() {
+        System.out.println("Single Pile of Rooms: " + printStack(roomManager.getRooms("Single")));
+        System.out.println("Double Pile of Rooms: " + printStack(roomManager.getRooms("Double")));
+        System.out.println("Suite Pile of Rooms: " + printStack(roomManager.getRooms("Suite")));
+        System.out.println("Deluxe Pile of Rooms: " + printStack(roomManager.getRooms("Deluxe")));
+    }
+
+    private String printStack(Stack<Room> stack) {
+        StringBuilder sb = new StringBuilder();
+        for (Room room : stack) {
+            sb.append("Room ").append(room.getRoomNumber()).append(" (").append(room.getRoomType()).append(") -> ");
+        }
+        if (sb.length() > 0) {
+            sb.setLength(sb.length() - 4); // Remove the last " -> "
+        }
+        return sb.toString();
+    }
+
+    public void printWaitingLines() {
+        System.out.println("Single Waiting Line of Reservations: " + printQueue(reservationManager.getReservations("Single")));
+        System.out.println("Double Waiting Line of Reservations: " + printQueue(reservationManager.getReservations("Double")));
+        System.out.println("Suite Waiting Line of Reservations: " + printQueue(reservationManager.getReservations("Suite")));
+        System.out.println("Deluxe Waiting Line of Reservations: " + printQueue(reservationManager.getReservations("Deluxe")));
+    }
+
+    private String printQueue(Queue<Reservation> queue) {
+        StringBuilder sb = new StringBuilder();
+        for (Reservation res : queue) {
+            sb.append(res.getReservationID()).append(",").append(res.getCustomerName()).append(",").append(res.getRoomType()).append(" -> ");
+        }
+        if (sb.length() > 0) {
+            sb.setLength(sb.length() - 4); // Remove the last " -> "
+        }
+        return sb.toString();
     }
 
     public static void main(String[] args) {
         HotelReservationSystem system = new HotelReservationSystem();
+
+        // Print initial room piles
+        System.out.println("Initial Room Piles:");
+        system.printPiles();
+
+        // Process reservations from the file
         system.processReservations("src/Hotel/reservations.txt");
+
+        // Print waiting lines after reading reservations
+        System.out.println("Waiting Lines After Reading Reservations:");
+        system.printWaitingLines();
+
+        // Make odd-numbered rooms available
         system.makeOddRoomsAvailable();
+
+        // Print room piles and waiting lines after making odd rooms available
+        System.out.println("Room Piles After Making Odd Rooms Available:");
+        system.printPiles();
+        System.out.println("Waiting Lines After Making Odd Rooms Available:");
+        system.printWaitingLines();
+
+        // Process waiting reservations
         system.processWaitingReservations();
+
+        // Print final room piles and waiting lines
+        System.out.println("Final Room Piles After Processing Waiting Lines:");
+        system.printPiles();
+        System.out.println("Final Waiting Lines After Processing Waiting Lines:");
+        system.printWaitingLines();
+
+        // Print final status of rooms
         system.printStatus();
     }
 }

@@ -1,5 +1,6 @@
 package Hotel;
 
+
 public class Reservation {
     private String reservationID;
     private String customerName;
@@ -16,3 +17,4 @@ public class Reservation {
     public String getCustomerName() { return customerName; }
     public String getRoomType() { return roomType; }
 }
+
