@@ -1,4 +1,4 @@
-package Room;
+package Hotel;
 
 public class Room {
     private int roomNumber;
@@ -16,21 +16,4 @@ public class Room {
     public String getRoomType() { return roomType; }
     public boolean isAvailable() { return availability; }
     public void setAvailability(boolean availability) { this.availability = availability; }
-}
-
-public class Reservation {
-    private String reservationID;
-    private String customerName;
-    private String roomType;
-
-    public Reservation(String reservationID, String customerName, String roomType) {
-        this.reservationID = reservationID;
-        this.customerName = customerName;
-        this.roomType = roomType;
-    }
-
-    // Getters
-    public String getReservationID() { return reservationID; }
-    public String getCustomerName() { return customerName; }
-    public String getRoomType() { return roomType; }
 }

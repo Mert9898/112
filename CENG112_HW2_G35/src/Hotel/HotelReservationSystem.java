@@ -1,11 +1,13 @@
-package HotelReservationSystem;
+package Hotel;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Stack;
 
 public class HotelReservationSystem {
     private RoomManager roomManager = new RoomManager();
-    private ReservationManager reservationManager = new ReservationManager();
+    private ManageReservations reservationManager = new ManageReservations();
     private List<Room> bookedRooms = new ArrayList<>();
 
     public void processReservations(String fileName) {
