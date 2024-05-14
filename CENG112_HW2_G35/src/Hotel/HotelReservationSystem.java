@@ -62,7 +62,7 @@ public class HotelReservationSystem {
 
     public static void main(String[] args) {
         HotelReservationSystem system = new HotelReservationSystem();
-        system.processReservations("reservations.txt");
+        system.processReservations("src/Hotel/reservations.txt");
         system.makeOddRoomsAvailable();
         system.processWaitingReservations();
         system.printStatus();
