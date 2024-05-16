@@ -68,7 +68,6 @@ public class HotelReservationSystem {
             System.out.println("Room " + room.getRoomNumber() + " (" + room.getRoomType() + ")");
         }
 
-        // Additionally print rooms that became available after making odd rooms available
         for (String roomType : new String[]{"Single", "Double", "Suite", "Deluxe"}) {
             Stack<Room> rooms = roomManager.getRooms(roomType);
             for (Room room : rooms) {
@@ -92,7 +91,7 @@ public class HotelReservationSystem {
             sb.append("Room ").append(room.getRoomNumber()).append(" (").append(room.getRoomType()).append(") -> ");
         }
         if (sb.length() > 0) {
-            sb.setLength(sb.length() - 4); // Remove the last " -> "
+            sb.setLength(sb.length() - 4); 
         }
         return sb.toString();
     }
@@ -110,7 +109,7 @@ public class HotelReservationSystem {
             sb.append(res.getReservationID()).append(",").append(res.getCustomerName()).append(",").append(res.getRoomType()).append(" -> ");
         }
         if (sb.length() > 0) {
-            sb.setLength(sb.length() - 4); // Remove the last " -> "
+            sb.setLength(sb.length() - 4); 
         }
         return sb.toString();
     }
@@ -118,36 +117,28 @@ public class HotelReservationSystem {
     public static void main(String[] args) {
         HotelReservationSystem system = new HotelReservationSystem();
 
-        // Print initial room piles
         System.out.println("Initial Room Piles:");
         system.printPiles();
 
-        // Process reservations from the file
         system.processReservations("src/Hotel/reservations.txt");
 
-        // Print waiting lines after reading reservations
         System.out.println("Waiting Lines After Reading Reservations:");
         system.printWaitingLines();
 
-        // Make odd-numbered rooms available
         system.makeOddRoomsAvailable();
 
-        // Print room piles and waiting lines after making odd rooms available
         System.out.println("Room Piles After Making Odd Rooms Available:");
         system.printPiles();
         System.out.println("Waiting Lines After Making Odd Rooms Available:");
         system.printWaitingLines();
 
-        // Process waiting reservations
         system.processWaitingReservations();
 
-        // Print final room piles and waiting lines
         System.out.println("Final Room Piles After Processing Waiting Lines:");
         system.printPiles();
         System.out.println("Final Waiting Lines After Processing Waiting Lines:");
         system.printWaitingLines();
 
-        // Print final status of rooms
         system.printStatus();
     }
 }
