@@ -1,5 +1,6 @@
 package Hotel;
 
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Queue;
@@ -9,6 +10,7 @@ public class HotelReservationSystem {
     private RoomManager roomManager = new RoomManager();
     private ManageReservations reservationManager = new ManageReservations();
     private List<Room> bookedRooms = new ArrayList<>();
+    private List<Room> availableRooms = new ArrayList<>();
 
     public void processReservations(String fileName) {
         reservationManager.loadReservations(fileName);
@@ -23,14 +25,20 @@ public class HotelReservationSystem {
                 bookedRooms.add(room);
                 reservations.poll();
             }
+
+            while (!rooms.isEmpty()) {
+                availableRooms.add(rooms.pop());
+            }
         }
     }
 
     public void makeOddRoomsAvailable() {
-        for (Room room : bookedRooms) {
+        List<Room> tempBookedRooms = new ArrayList<>(bookedRooms);
+        for (Room room : tempBookedRooms) {
             if (room.getRoomNumber() % 2 != 0) {
                 room.setAvailability(true);
                 roomManager.getRooms(room.getRoomType()).push(room);
+                bookedRooms.remove(room);
             }
         }
     }
@@ -50,25 +58,24 @@ public class HotelReservationSystem {
     }
 
     public void printStatus() {
-        List<Room> unavailableRooms = new ArrayList<>();
-        List<Room> availableRooms = new ArrayList<>();
-
-        for (Room room : bookedRooms) {
-            if (room.isAvailable()) {
-                availableRooms.add(room);
-            } else {
-                unavailableRooms.add(room);
-            }
-        }
-
         System.out.println("*********************************************** Unavailable Rooms");
-        for (Room room : unavailableRooms) {
+        for (Room room : bookedRooms) {
             System.out.println("Room " + room.getRoomNumber() + " (" + room.getRoomType() + ")");
         }
 
         System.out.println("*********************************************** Available Rooms");
         for (Room room : availableRooms) {
             System.out.println("Room " + room.getRoomNumber() + " (" + room.getRoomType() + ")");
+        }
+
+        // Additionally print rooms that became available after making odd rooms available
+        for (String roomType : new String[]{"Single", "Double", "Suite", "Deluxe"}) {
+            Stack<Room> rooms = roomManager.getRooms(roomType);
+            for (Room room : rooms) {
+                if (room.isAvailable()) {
+                    System.out.println("Room " + room.getRoomNumber() + " (" + room.getRoomType() + ")");
+                }
+            }
         }
     }
 

@@ -12,7 +12,6 @@ public class Reservation {
         this.roomType = roomType;
     }
 
-    // Getters
     public String getReservationID() { return reservationID; }
     public String getCustomerName() { return customerName; }
     public String getRoomType() { return roomType; }
