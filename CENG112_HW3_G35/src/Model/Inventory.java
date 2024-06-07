@@ -1,5 +1,9 @@
 package Model;
 import Model.Product;
+import Model.Tree;
+
+import java.util.List;
+
 public class Inventory {
     private Tree<Product> tree;
 
@@ -12,11 +16,18 @@ public class Inventory {
     }
 
     public boolean searchProduct(String productName) {
-        // Implement custom search logic if necessary
-        return tree.search(new Product(productName, null, 0));
+        // Search the tree for a product with the given name
+        List<Product> products = tree.list();
+        for (Product product : products) {
+            if (product.getName().equals(productName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     public List<Product> listProducts() {
         return tree.list();
     }
 }
+
